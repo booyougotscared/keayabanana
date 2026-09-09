@@ -1,0 +1,118 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 1.4rem 0;
+  transition: padding 0.35s ease, background 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.nav--scrolled {
+  padding: 0.9rem 0;
+  background: rgba(54, 21, 30, 0.72);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(186, 226, 243, 0.08);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--sky);
+}
+
+.nav__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.nav__links {
+  display: flex;
+  gap: 2.2rem;
+}
+
+.nav__links a {
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--mauve);
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav__links a:hover {
+  color: var(--sky);
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav__links a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+}
+
+.nav__toggle span {
+  width: 22px;
+  height: 1.5px;
+  background: var(--sky);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav__toggle.is-open span:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+.nav__toggle.is-open span:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+@media (max-width: 720px) {
+  .nav__links--desktop {
+    display: none;
+  }
+  .nav__toggle {
+    display: flex;
+  }
+  .nav__links--mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.5rem var(--edge) 2rem;
+    background: rgba(54, 21, 30, 0.96);
+    backdrop-filter: blur(10px);
+  }
+  .nav__links--mobile a {
+    font-size: 1.05rem;
+  }
+}

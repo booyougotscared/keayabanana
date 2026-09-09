@@ -1,0 +1,160 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 78% 18%, rgba(27, 44, 193, 0.35), transparent 70%),
+    radial-gradient(45% 45% at 15% 82%, rgba(171, 163, 97, 0.22), transparent 70%),
+    var(--wine);
+}
+
+.hero__blob,
+.hero__ring {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.hero__blob--blue {
+  width: min(38vw, 420px);
+  height: min(38vw, 420px);
+  top: 8%;
+  right: -6%;
+  background: radial-gradient(circle at 35% 30%, var(--blue-bright), var(--blue) 70%);
+  opacity: 0.85;
+  filter: blur(0px);
+}
+
+.hero__blob--gold {
+  width: min(14vw, 160px);
+  height: min(14vw, 160px);
+  bottom: 14%;
+  right: 22%;
+  background: var(--gold);
+  opacity: 0.9;
+}
+
+.hero__blob--sky {
+  width: min(10vw, 110px);
+  height: min(10vw, 110px);
+  top: 62%;
+  left: 8%;
+  background: var(--sky);
+  opacity: 0.85;
+}
+
+.hero__ring {
+  width: min(20vw, 220px);
+  height: min(20vw, 220px);
+  top: 18%;
+  left: 4%;
+  border: 1.5px solid rgba(186, 226, 243, 0.45);
+  background: transparent;
+}
+
+@media (max-width: 720px) {
+  .hero__blob--blue { width: 70vw; height: 70vw; top: -4%; right: -18%; }
+  .hero__blob--gold { width: 24vw; height: 24vw; bottom: 30%; right: 8%; }
+  .hero__blob--sky { display: none; }
+  .hero__ring { width: 34vw; height: 34vw; top: 6%; left: -10%; }
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  padding-top: 6rem;
+}
+
+.hero__eyebrow,
+.hero__name,
+.hero__role,
+.hero__tagline,
+.hero__actions {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero__inner.is-loaded .hero__eyebrow { opacity: 1; transform: none; transition-delay: 0.05s; }
+.hero__inner.is-loaded .hero__name { opacity: 1; transform: none; transition-delay: 0.15s; }
+.hero__inner.is-loaded .hero__role { opacity: 1; transform: none; transition-delay: 0.28s; }
+.hero__inner.is-loaded .hero__tagline { opacity: 1; transform: none; transition-delay: 0.38s; }
+.hero__inner.is-loaded .hero__actions { opacity: 1; transform: none; transition-delay: 0.48s; }
+
+.hero__eyebrow {
+  color: var(--gold);
+  margin-bottom: 1.4rem;
+}
+
+.hero__name {
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.98;
+  color: var(--sky);
+  max-width: 16ch;
+}
+
+.hero__role {
+  margin-top: 1.4rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--mauve);
+  font-weight: 500;
+  max-width: 42ch;
+}
+
+.hero__tagline {
+  margin-top: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(186, 226, 243, 0.85);
+  max-width: 52ch;
+}
+
+.hero__actions {
+  margin-top: 2.6rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 1.5px solid rgba(186, 226, 243, 0.5);
+  border-radius: 999px;
+  z-index: 2;
+}
+
+.hero__scroll span {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sky);
+  transform: translateX(-50%);
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+  0% { top: 8px; opacity: 1; }
+  70% { top: 24px; opacity: 0; }
+  100% { top: 24px; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__eyebrow, .hero__name, .hero__role, .hero__tagline, .hero__actions {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero__scroll span { animation: none; top: 8px; }
+}
